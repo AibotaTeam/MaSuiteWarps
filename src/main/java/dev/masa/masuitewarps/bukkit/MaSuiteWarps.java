@@ -1,5 +1,6 @@
 package dev.masa.masuitewarps.bukkit;
 
+import com.earth2me.essentials.Essentials;
 import dev.masa.masuitecore.acf.PaperCommandManager;
 import dev.masa.masuitecore.bukkit.chat.Formator;
 import dev.masa.masuitecore.core.Updator;
@@ -9,9 +10,12 @@ import dev.masa.masuitecore.core.configuration.BukkitConfiguration;
 import dev.masa.masuitecore.core.utils.CommandManagerUtil;
 import dev.masa.masuitewarps.bukkit.commands.WarpCommand;
 import dev.masa.masuitewarps.core.models.Warp;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -30,7 +34,7 @@ public class MaSuiteWarps extends JavaPlugin implements Listener {
     private boolean requestedPerServerWarps = false;
     public boolean perServerWarps = false;
 
-
+    public Essentials essentials;
     @Override
     public void onEnable() {
         // Create configs
@@ -67,6 +71,19 @@ public class MaSuiteWarps extends JavaPlugin implements Listener {
 
         api.getCooldownService().addCooldownLength("warps", config.load("warps", "config.yml").getInt("cooldown"));
         api.getWarmupService().addWarmupTime("warps", config.load("warps", "config.yml").getInt("warmup"));
+
+        if(!hookEssentials()) {
+            Bukkit.getLogger().info(ChatColor.DARK_RED + "Essentials are not installed");
+        }
+    }
+
+    private boolean hookEssentials() {
+        try {
+            essentials = (Essentials) Bukkit.getPluginManager().getPlugin("Essentials");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @EventHandler

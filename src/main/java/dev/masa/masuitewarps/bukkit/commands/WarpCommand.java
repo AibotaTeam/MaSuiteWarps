@@ -1,5 +1,6 @@
 package dev.masa.masuitewarps.bukkit.commands;
 
+import com.earth2me.essentials.User;
 import dev.masa.masuitecore.acf.BaseCommand;
 import dev.masa.masuitecore.acf.annotation.*;
 import dev.masa.masuitecore.acf.bukkit.contexts.OnlinePlayer;

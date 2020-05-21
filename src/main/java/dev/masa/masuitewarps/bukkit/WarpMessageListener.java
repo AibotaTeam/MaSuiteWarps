@@ -40,6 +40,7 @@ public class WarpMessageListener implements org.bukkit.plugin.messaging.PluginMe
                     System.out.println("[MaSuite] [Warps] [World=" + loc.getWorld() + "] World  could not be found!");
                     return;
                 }
+                plugin.essentials.getUser(p).setLastLocation();
                 p.teleport(bukkitLocation);
             }
             if (subchannel.equals("CreateWarp")) {

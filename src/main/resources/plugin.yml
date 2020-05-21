@@ -3,6 +3,6 @@ main: dev.masa.masuitewarps.bukkit.MaSuiteWarps
 version: ${project.version}
 author: Masagameplay
 depends: [MaSuiteCore]
-softdepend: [Multiverse, Multiworld]
+softdepend: [Multiverse, Multiworld, Essentials]
 loadbefore: [Essentials]
-api-version: 1.13
+api-version: '1.15'
